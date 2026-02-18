@@ -108,7 +108,6 @@ const games = [
         thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMWgIRmr1_PK-JOKBAbLveo1O-zfgcyrw2ncdJ006Vte91uo47Jc9uqU5ce3_V53nxsyzZ&s=10"
     }
 ];
-];
 
 // Create game cards
 games.forEach(game => {
