@@ -25,7 +25,7 @@ fullscreenBtn.addEventListener("click", () => {
 
 // ---------------- PASSWORD SYSTEM ----------------
 
-const correctPassword = "wait",
+const correctPassword = "wait";
 
 const loginScreen = document.getElementById("loginScreen");
 const siteContent = document.getElementById("siteContent");
