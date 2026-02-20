@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carters Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="loginScreen" class="login-screen">
+    <div class="login-box">
+        <h2>Enter Password</h2>
+        <input type="password" id="passwordInput" placeholder="Password">
+        <button id="loginBtn">Enter</button>
+        <p id="errorMsg"></p>
+    </div>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="siteContent" style="display:none;">
+
+    <header>
+        <h1>Unc site</h1>
+</header>
+
+    <main>
+        <div id="homeScreen" class="screen">
+            <div id="gameList" class="game-grid"></div>
+        </div>
+
+        <div id="gameScreen" class="screen hidden">
+            <div class="top-bar">
+                <button id="backBtn">Back to Home</button>
+            </div>
+            <div class="iframe-container">
+                <div class="game-container">
+
+    <div class="game-controls">
+        <button id="newTabBtn">Open in New Tab</button>
+        <button id="fullscreenBtn">Fullscreen</button>
+    </div>
+
+    <iframe id="gameFrame"></iframe>
+
+</div>
+
+            </div>
+        </div>
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+
+</html>
