@@ -1,203 +1,53 @@
-const gameList = document.getElementById("gameList");
-const homeScreen = document.getElementById("homeScreen");
-const gameScreen = document.getElementById("gameScreen");
-const gameFrame = document.getElementById("gameFrame");
-const backBtn = document.getElementById("backBtn");
-const iframe = document.getElementById("gameFrame");
-const newTabBtn = document.getElementById("newTabBtn");
-const fullscreenBtn = document.getElementById("fullscreenBtn");
+﻿const intro = document.getElementById("intro");
+const introText = document.getElementById("introText");
+const home = document.getElementById("home");
+const clipsPage = document.getElementById("clipsPage");
+const textsPage = document.getElementById("textsPage");
+let stage = 0;
 
-newTabBtn.addEventListener("click", () => {
-    if (iframe.src) {
-        window.open(iframe.src, "_blank");
+intro.addEventListener("click", () => {
+
+    if (stage === 0) {
+
+        // Add glitch effect
+        introText.classList.add("glitch");
+
+        setTimeout(() => {
+            introText.classList.remove("glitch");
+            introText.textContent = "Jimmy is not as you seem.";
+        }, 600);
+
+        stage++;
+
+    } else if (stage === 1) {
+
+        introText.classList.add("flashOut");
+
+        setTimeout(() => {
+            intro.classList.remove("active");
+            home.classList.add("active");
+        }, 800);
+
+        stage++;
     }
 });
+/* NAVIGATION */
+function openPage(pageId) {
+    home.classList.remove("active");
+    document.getElementById(pageId).classList.add("active");
 
-fullscreenBtn.addEventListener("click", () => {
-    if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-    } else if (iframe.webkitRequestFullscreen) {
-        iframe.webkitRequestFullscreen();
-    } else if (iframe.msRequestFullscreen) {
-        iframe.msRequestFullscreen();
+    // Automatically load content
+    if (pageId === "clipsPage") {
+        document.getElementById("jimmyImage").src = "jimmy.png";
     }
-});
 
-// ---------------- PASSWORD SYSTEM ----------------
-
-const correctPassword = "wait";
-
-const loginScreen = document.getElementById("loginScreen");
-const siteContent = document.getElementById("siteContent");
-const loginBtn = document.getElementById("loginBtn");
-const passwordInput = document.getElementById("passwordInput");
-const errorMsg = document.getElementById("errorMsg");
-
-loginBtn.addEventListener("click", () => {
-    if (passwordInput.value === correctPassword) {
-        loginScreen.style.display = "none";
-        siteContent.style.display = "block";
-    } else {
-        errorMsg.textContent = "Incorrect password.";
+    if (pageId === "textsPage") {
+        document.getElementById("jimmyText").textContent = "Jimmy.. aka Dino_gtt. he is a youtuber/tiktoker. He is wanted for MANY warcrimes in serveral different countries. He has done bad stuff like eating his teachers, befriending a 80year old man, and befriending a 6 year old aka a minigames kid.He also has managed to scare off jidion.Jimmy is also lying about his age, he says hes 67 years old, but in reality he's 6-7 years old...";
     }
-});
-
-// Allow Enter key
-passwordInput.addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        loginBtn.click();
-    }
-});
-
-// 🔥 Add your games here
-const games = [
-    {
-        name: "SKIBIDI ATTACK",
-        description: "SKIBIDI.",
-        url: "https://landsedu112.github.io/g22/class-392",
-        width: 810,
-        height: 540,
-        thumbnail: "https://m.media-amazon.com/images/I/81DDkTrLcTL.png"
-    },
-    {
-        name: "Retro Bowl",
-        description: "Futball.",
-        url: "https://landsedu112.github.io/g5/class-400",
-        width: 810,
-        height: 540,
-        thumbnail: "https://play-lh.googleusercontent.com/WRM5Y1xZmzcCP1YtO5zl6G2g7CU5c5ZfjX4UVrgi1bpNgkfy-wuB-bQx3kkeRfaGYQ=w600-h300-pc0xffffff-pd"
-    },
-        {
-        name: "Slope 2",
-        description: "slope 2.",
-        url: "https://landsedu112.github.io/g2/class-437",
-        width: 810,
-        height: 540,
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1LzrlcLgoyz4Wfq-czWCI-GdtEB_pLWJY1Q&s"
-    },
-       {
-        name: "Minecraft",
-        description: "Mine + craft = minecraft.",
-        url: "MC.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNM2PlvKvyt6FQckBQvb1u7Yzf-wwvxgDffg&s"
-    },
-    {
-        name: "Geomtry dash lite",
-        description: "geo dash lite.",
-        url: "geodash.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://play-lh.googleusercontent.com/p7kWbWBFxQIrzolEqiV5uSvctLeyssZvBV7UBOX29wzZI52IdcSs4qCB_zsQJL1mt9A"
-    },
-    {
-        name: "Bitlife",
-        description: "Create your own alternate life",
-        url: "Bitlife.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMWgIRmr1_PK-JOKBAbLveo1O-zfgcyrw2ncdJ006Vte91uo47Jc9uqU5ce3_V53nxsyzZ&s=10"
-    },
-    {
-        name: "gorilla tag",
-        description: "monke",
-        url: "gtag.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvA940rQzS0Rhx0M-LjGkFkeHTrQ--GKyyig&s"
-    },
-    {
-        name: "Sandtris",
-        description: "Idek how to explain it",
-        url: "Stri.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB9RVMrkCKCOz17NdebE6rppc3D0G7h7Ffcw&s"
-    },
-      {
-        name: "Football Bros",
-        description: "yes",
-        url: "FB.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://images.igdb.com/igdb/image/upload/t_cover_big/co951q.webp"
-    },
-      {
-        name: "BaseBall Bros",
-        description: "yes again",
-        url: "BB.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://i1.sndcdn.com/artworks-VBHhC0ih7qZz6Gnd-4k9qQA-t500x500.png"
-    },
-      {
-        name: "Basketball Bros",
-        description: "yes again again",
-        url: "BAKB.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://kevin.games/assets/images/new/basketbros-io.jpg"
-    },
-      {
-        name: "Drift Hunters",
-        description: "yes",
-        url: "DH.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://cdn.now.gg/apps-content/com.nowgg.h5.pub501.app51334/icon/drift-hunters.png"
-    },
-      {
-        name: "1v1 lol",
-        description: "yes again",
-        url: "lol.html",
-        width: 810,
-        height: 540,
-        thumbnail: "https://cdn-bgp.bluestacks.com/BGP/us/gametiles_lol.onevone.jpg"
-    },
-      {
-        name: "untitled",
-        description: "yes again again",
-        url: "",
-        width: 810,
-        height: 540,
-        thumbnail: ""
-    }
-];
-
-// Create game cards
-games.forEach(game => {
-    const card = document.createElement("div");
-    card.className = "game-card";
-
-   card.innerHTML = `
-    <img src="${game.thumbnail}" alt="${game.name}" class="game-thumb">
-    <h3>${game.name}</h3>
-    <p>${game.description}</p>
-`;
-
-
-    card.addEventListener("click", () => {
-        loadGame(game);
-    });
-
-    gameList.appendChild(card);
-});
-
-function loadGame(game) {
-    homeScreen.classList.add("hidden");
-    gameScreen.classList.remove("hidden");
-
-    gameFrame.src = game.url;
-    gameFrame.style.width = game.width + "px";
-    gameFrame.style.height = game.height + "px";
-
-    gameFrame.setAttribute("allowfullscreen", "");
-    gameFrame.setAttribute("scrolling", "no");
 }
 
-backBtn.addEventListener("click", () => {
-    gameFrame.src = "";
-    gameScreen.classList.add("hidden");
-    homeScreen.classList.remove("hidden");
-});
+function goHome() {
+    clipsPage.classList.remove("active");
+    textsPage.classList.remove("active");
+    home.classList.add("active");
+}

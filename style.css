@@ -1,200 +1,199 @@
-/* ----------------- GENERAL RESET ----------------- */
-* {
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Sawarabi Mincho', sans-serif;
+    overflow-x: hidden;
 }
 
-/* ----------------- BODY & BACKGROUND ----------------- */
 body {
-    background: linear-gradient(135deg, #061a40, #0b2c66, #1446a0);
-    background-size: 400% 400%;
-    animation: gradientMove 12s ease infinite;
-    color: #e6f2ff;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    /* STRONG GREEN GRADIENT */
+    background: linear-gradient( 135deg, #00ff88 0%, #00cc66 50%, #004d26 100% );
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    margin: 0;
+    overflow: hidden; /* disables scrolling everywhere */
 }
 
-@keyframes gradientMove {
+/* Screens */
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Intro */
+/* Intro Title Animation */
+.title {
+    font-size: 10rem;
+    letter-spacing: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s;
+}
+
+/* GLITCH EFFECT */
+.glitch {
+    animation: glitchEffect 0.6s linear;
+}
+
+@keyframes glitchEffect {
     0% {
-        background-position: 0% 50%;
+        transform: translate(0);
+        text-shadow: 3px 0 #00ff88, -3px 0 #003300;
     }
 
-    50% {
-        background-position: 100% 50%;
+    20% {
+        transform: translate(-5px, 5px);
+    }
+
+    40% {
+        transform: translate(5px, -5px);
+    }
+
+    60% {
+        transform: translate(-5px, 0);
+    }
+
+    80% {
+        transform: translate(5px, 5px);
     }
 
     100% {
-        background-position: 0% 50%;
+        transform: translate(0);
+        text-shadow: none;
     }
 }
 
-/* ----------------- HEADER ----------------- */
-header {
-    padding: 30px;
-    text-align: center;
-    background: rgba(10, 25, 60, 0.6);
-    backdrop-filter: blur(10px);
-    border-bottom: 3px solid #00bfff;
-    font-size: 34px;
-    letter-spacing: 3px;
-    font-weight: bold;
-    text-shadow: 0 0 15px #00bfff;
-    box-shadow: 0 0 30px #00bfff30;
+/* FLASH OUT */
+.flashOut {
+    animation: flashOut 0.8s forwards;
 }
 
-/* ----------------- SCREENS ----------------- */
-.screen {
-    padding: 30px;
-}
-
-.hidden {
-    display: none;
-}
-
-/* ----------------- GAME GRID ----------------- */
-.game-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 25px;
-    padding: 20px 0;
-}
-
-/* ----------------- GAME CARDS ----------------- */
-.game-card {
-    background: rgba(20, 60, 120, 0.35);
-    backdrop-filter: blur(15px);
-    padding: 20px;
-    border-radius: 18px;
-    cursor: pointer;
-    border: 1px solid rgba(0, 191, 255, 0.4);
-    transition: all 0.35s ease;
-    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.15);
-}
-
-    .game-card:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 12px 35px rgba(0, 191, 255, 0.5);
-        border-color: #00bfff;
+@keyframes flashOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
     }
 
-    .game-card h3 {
-        margin-bottom: 8px;
-        font-size: 22px;
-        color: #00cfff;
-        text-shadow: 0 0 10px #00bfff80;
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+        text-shadow: 0 0 40px #00ff88;
     }
 
-    .game-card p {
-        color: #cce6ff;
-        font-size: 14px;
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Dramatic zoom animation */
+.presentAnimation {
+    animation: cinematicZoom 1s forwards;
+}
+
+@keyframes cinematicZoom {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        letter-spacing: 6px;
     }
 
-.game-thumb {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 12px;
-    border: 2px solid rgba(0, 191, 255, 0.4);
-    transition: 0.3s ease;
+    50% {
+        transform: scale(1.4);
+        letter-spacing: 15px;
+        text-shadow: 0 0 40px #00ff88;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
 }
 
-.game-card:hover .game-thumb {
-    transform: scale(1.05);
+.zoom {
+    transform: scale(1.5);
+    opacity: 0;
 }
 
-/* ----------------- BUTTONS ----------------- */
-button {
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #007bff, #00cfff);
-    color: white;
+/* Buttons */
+.menu button {
+    padding: 30px 80px;
+    margin: 10px;
+    font-size: 3.5rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
+    background: #002211;
+    color: #00ff88;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px #00bfff60;
 }
 
-    button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 0 25px #00cfff;
-    }
-
-/* ----------------- IFRAME ----------------- */
-.iframe-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #002211;
+    color: #00ff88;
+    cursor: pointer;
 }
 
-iframe {
-    border: 3px solid #00bfff;
-    border-radius: 16px;
-    box-shadow: 0 0 30px #00bfff50;
-    background: rgba(0, 0, 0, 0.7);
+#jimmyImage {
+    width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #00ff88;
 }
 
-/* ---------------- LOGIN SCREEN ---------------- */
-.login-screen {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, #061a40, #0b2c66, #1446a0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#jimmyText {
+    font-size: 6rem;
+    max-width: 2000px; /* controls how wide the text can be */
+    width: 80%;
+    text-align: left; /* better readability */
+    line-height: 1.6;
+    margin: 0 auto; /* centers it */
+    word-wrap: break-word;
+}
+:root {
+    --jimmy-size: 120px; /* CHANGE SIZE HERE */
+    --jimmy-color: white
+    --jimmy-glow: 15px;
+    --jimmy-spacing: 3px;
 }
 
-.login-box {
-    background: rgba(20, 60, 120, 0.5);
-    backdrop-filter: blur(20px);
-    padding: 45px;
-    border-radius: 20px;
-    border: 1px solid #00bfff;
-    text-align: center;
-    width: 320px;
-    box-shadow: 0 0 40px #00bfff40;
+#jimmyFiles {
+    font-size: var(--jimmy-size);
+    color: var(--jimmy-color);
+    letter-spacing: var(--jimmy-spacing);
+    text-shadow: 0 0 var(--jimmy-glow) var(--jimmy-color);
+    margin-bottom: 20px;
 }
-
-    .login-box h2 {
-        margin-bottom: 20px;
-        color: #00cfff;
-        text-shadow: 0 0 12px #00bfff80;
-    }
-
-    .login-box input {
-        width: 100%;
-        padding: 12px;
-        margin-bottom: 15px;
-        border-radius: 8px;
-        border: 1px solid #00bfff;
-        background: rgba(0, 0, 50, 0.6);
-        color: white;
-        outline: none;
-    }
-
-        .login-box input:focus {
-            box-shadow: 0 0 10px #00bfff;
-        }
-
-/* ---------------- GAME CONTROLS ---------------- */
-.game-controls button {
-    background: linear-gradient(135deg, #005eff, #00bfff);
-    margin: 5px;
-    border-radius: 10px;
+h2 {
+    font-size: 0px; /* Change this number */
+    margin-bottom: 20px;
 }
-
-    .game-controls button:hover {
-        transform: scale(1.08);
-    }
-
-/* ---------------- GAME FRAME ---------------- */
-#gameFrame {
-    width: 900px;
-    height: 600px;
-    border: 3px solid #00bfff;
-    border-radius: 18px;
-    box-shadow: 0 0 40px #00bfff40;
+/* Allow scrolling only on Clips and Text pages */
+#clipsPage,
+#textsPage {
+    overflow-y: auto; /* vertical scroll only */
+    overflow-x: hidden; /* NO sideways scroll */
+    height: 100vh;
+    width: 100%;
+    padding: 120px 20px;
+    box-sizing: border-box;
 }
